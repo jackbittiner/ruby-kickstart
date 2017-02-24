@@ -17,3 +17,19 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(*args)
+  truth_value = args[0]
+  paired_array = []
+  return_array = []
+  args.shift
+  args.each_slice(2) { |a, b| paired_array << [a, b] }
+
+  paired_array.each do |a, b|
+    if (truth_value == true) && (!!a != !!b) then return_array << true
+    elsif (truth_value == true) && (!!a == !!b) then return_array << false
+    elsif (truth_value == false) && (!!a != !!b) then return_array << false
+    elsif (truth_value == false) && (!!a == !!b) then return_array << true
+    end
+  end
+  return_array
+end
