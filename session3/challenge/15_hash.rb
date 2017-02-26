@@ -38,3 +38,14 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+def middle(list)
+  array = data(list)
+  halfway = (array.size / 2.0).floor
+  array[halfway]
+end
+
+def data(list)
+  return [] if list.nil?
+  [list[:data]] + data(list[:next])
+end
